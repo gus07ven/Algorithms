@@ -1,9 +1,9 @@
-public class GenericStack<Item> {
+public class GenericStack<T> {
 
   private Node first = null;
 
   private class Node {
-    Item item;
+    T item;
     Node next;
   }
 
@@ -11,15 +11,15 @@ public class GenericStack<Item> {
     return first == null;
   }
 
-  public void push(Item item){
+  public void push(T item){
     Node oldFirst = first;
     first = new Node();
     first.item = item;
     first.next = oldFirst;
   }
 
-  public Item pop(){
-    Item item = first.item;
+  public T pop(){
+    T item = first.item;
     first = first.next;
     return item;
   }
