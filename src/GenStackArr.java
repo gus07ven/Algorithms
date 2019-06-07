@@ -15,22 +15,21 @@ public class GenStackArr<T> {
   }
 
   public void push(T item){
-    if(top == s.length){
-      throw new StackOverflowError();
-    } else {
-      s[top++] = item;
-    }
+    if(top == s.length) throw new StackOverflowError();
+    s[top++] = item;
   }
 
   public T pop(){
-    if(isEmpty()){
-      throw new EmptyStackException();
-    } else {
-      T retVal = s[top - 1];
-      s[top - 1] = null;
-      top--;
-      return retVal;
-    }
+    if(isEmpty()) throw new EmptyStackException();
+    T retVal = s[top - 1];
+    s[top - 1] = null;
+    top--;
+    return retVal;
+  }
+
+  public T peek(){
+    if(isEmpty()) throw new EmptyStackException();
+    return s[top - 1];
   }
 
   public static void main(String[] args) {
@@ -41,6 +40,9 @@ public class GenStackArr<T> {
     gsa.push("Luis");
     gsa.push("Mariano");
     System.out.println(gsa.pop());
+    System.out.println(gsa.pop());
+    System.out.println(gsa.isEmpty());
+    System.out.println(gsa.peek());
     System.out.println(gsa.pop());
     System.out.println(gsa.isEmpty());
   }
