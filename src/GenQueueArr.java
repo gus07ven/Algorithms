@@ -38,14 +38,18 @@ public class GenQueueArr<T> {
     return numElem == 0;
   }
 
+  public T peek(){
+    if(isEmpty()){
+      throw new NoSuchElementException("Queue underflow");
+    }
+    return q[first - (first - last)];
+  }
+
   public static void main(String[] args) {
-    GenQueueArr gqa = new GenQueueArr(3);
+    GenQueueArr gqa = new GenQueueArr(5);
     gqa.enqueue("Gustavo");
-    gqa.enqueue("Luis");
-    gqa.enqueue("Mariano");
+    gqa.enqueue("Manuel");
     System.out.println(gqa.isEmpty());
-    System.out.println(gqa.dequeue());
-    System.out.println(gqa.dequeue());
-    System.out.println(gqa.dequeue());
+    System.out.println(gqa.peek());
   }
 }
