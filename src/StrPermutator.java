@@ -26,11 +26,40 @@ public class StrPermutator {
     return true;
   }
 
+  public static String sort(String s){
+    char[] content = s.toCharArray();
+    java.util.Arrays.sort(content);
+    return new String(content);
+  }
+
+  public static boolean permutation(String s, String t){
+    return sort(s).equals(sort(t));
+  }
+
+  public static boolean permutation2(String s, String t){
+    if(s.length() != t.length()) return false;
+
+    int[] letters = new int[128]; // Assuming ASCII
+    for(int i = 0; i < s.length(); i++){
+      letters[s.charAt(i)]++;
+    }
+
+    for(int i = 0; i < t.length(); i++){
+      letters[t.charAt(i)]--;
+      if(letters[t.charAt(i)] < 0) return false;
+    }
+    return true;
+  }
+
   public static void main(String[] args) {
 
-    // Assuming strings are of same length and characters can't be repeated
-    String first = "Country";
-    String second = "Trycoun";
-    System.out.println(isPermutation(first, second));
+    String[][] pairs = {{"apple", "papel"}, {"carrot", "tarroc"}, {"hello", "llloc"}};
+    for(String[] pair : pairs){
+      String word1 = pair[0];
+      String word2 = pair[1];
+      boolean anagram = isPermutation(word1, word2);
+      System.out.println(word1 + "," + word2 + ": " + anagram);
+    }
+
   }
 }
