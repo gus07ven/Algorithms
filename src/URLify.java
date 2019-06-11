@@ -6,7 +6,7 @@ public class URLify {
     int ptr2 = inputStrCharArr.length - 1;
 
     for (int i = ptr1; i > 0; i--) {
-      if (ptr2 > i) {
+      if (ptr2 >= i) {
         if (inputStrCharArr[i] != ' ') {
           inputStrCharArr[ptr2] = inputStrCharArr[i];
           inputStrCharArr[i] = ' ';
@@ -27,10 +27,32 @@ public class URLify {
     return new String(inputStrCharArr);
   }
 
-  public static void main(String[] args) {
-    String input = "Mr John Smith    ";
-    int strLength = 13;
+  static void replaceSpaces(char[] str, int trueLength){
+    int spaceCount = 0, index = 0, i = 0;
+    for(i = 0; i < trueLength; i++){
+      if(str[i] == ' '){
+        spaceCount++;
+      }
+    }
+    index = trueLength + spaceCount * 2;
+    if(trueLength < str.length) str[trueLength] = '\0';
+    for(i = trueLength - 1; i >= 0; i--){
+      if(str[i] == ' '){
+        str[index - 1] = '0';
+        str[index - 2] = '2';
+        str[index - 3] = '%';
+        index = index - 3;
+      } else {
+        str[index - 1] = str[i];
+        index--;
+      }
+    }
+  }
 
-    System.out.println(toURL(input, strLength));
+  public static void main(String[] args) {
+    String input = "John Smith  ";
+    int strLength = 10;
+
+    replaceSpaces(input.toCharArray(), strLength);
   }
 }
