@@ -36,6 +36,26 @@ public class PalindromePermutation {
     return checkMaxOneOdd(table);
   }
 
+  static boolean isPermutationOfPalindromeTwo(String phrase){
+    int countOdd = 0;
+    int z = Character.getNumericValue('z');
+    int a = Character.getNumericValue('a');
+    int[] table = new int[Character.getNumericValue('z') - Character.getNumericValue('a') + 1];
+
+    for(char c : phrase.toCharArray()){
+      int x = getCharNumber(c);
+      if(x != -1){
+        table[x]++;
+        if(table[x] % 2 == 1){
+          countOdd++;
+        } else {
+          countOdd--;
+        }
+      }
+    }
+    return countOdd <= 1;
+  }
+
   static boolean checkMaxOneOdd(int[] table){
     boolean foundOdd = false;
     for(int count : table) {
@@ -71,11 +91,12 @@ public class PalindromePermutation {
     return table;
   }
 
+
   public static void main(String[] args) {
     String odd = "2taco cat2";
     String even = "rotorm";
 
-    System.out.println(isPermutationOfPalindrome(odd));
-    System.out.println(isPermutationOfPalindrome(even));
+    System.out.println(isPermutationOfPalindromeTwo(odd));
+    System.out.println(isPermutationOfPalindromeTwo(even));
   }
 }
