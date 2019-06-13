@@ -56,6 +56,36 @@ public class PalindromePermutation {
     return countOdd <= 1;
   }
 
+  static boolean isPermutationOfPalindromeThree(String phrase){
+    int bitVector = createBitVector(phrase);
+    return bitVector == 0 || checkExactlyOneBitSet(bitVector);
+  }
+
+  static int createBitVector(String phrase){
+    int bitVector = 0;
+    for(char c : phrase.toCharArray()){
+      int x = getCharNumber(c);
+      bitVector = toggle(bitVector, x);
+    }
+    return bitVector;
+  }
+
+  static int toggle(int bitVector, int index){
+    if(index < 0) return bitVector;
+
+    int mask = 1 << index;
+    if((bitVector & mask) == 0){
+      bitVector |= mask;
+    } else {
+      bitVector &= ~mask;
+    }
+    return bitVector;
+  }
+
+  static boolean checkExactlyOneBitSet(int bitVector){
+    return (bitVector & (bitVector - 1)) == 0;
+  }
+
   static boolean checkMaxOneOdd(int[] table){
     boolean foundOdd = false;
     for(int count : table) {
@@ -96,7 +126,7 @@ public class PalindromePermutation {
     String odd = "2taco cat2";
     String even = "rotorm";
 
-    System.out.println(isPermutationOfPalindromeTwo(odd));
-    System.out.println(isPermutationOfPalindromeTwo(even));
+    System.out.println(isPermutationOfPalindromeThree(odd));
+    System.out.println(isPermutationOfPalindromeThree(even));
   }
 }
