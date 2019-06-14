@@ -30,9 +30,27 @@ public class StrCompressor {
     return compressed.toString();
   }
 
-  public static void main(String[] args) {
-    String original = "aabcccccaaa";
+  static String compress(String str){
+    StringBuilder compressed = new StringBuilder();
+    int countConsecutive = 0;
 
-    System.out.println(compressStr(original));
+    for(int i = 0; i < str.length(); i++){
+      countConsecutive++;
+
+      if(compressed.length() > str.length()) return str;
+
+      if(i + 1 >= str.length() || str.charAt(i) != str.charAt(i + 1)){
+        compressed.append(str.charAt(i));
+        compressed.append(countConsecutive);
+        countConsecutive = 0;
+      }
+    }
+    return compressed.length() < str.length() ? compressed.toString() : str;
+  }
+
+  public static void main(String[] args) {
+    String original = "abcdefg";
+
+    System.out.println(compress(original));
   }
 }
