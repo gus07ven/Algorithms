@@ -50,8 +50,8 @@ public class URLify {
   }
 
   public static void main(String[] args) {
-    String input = "John Smith  ";
-    int strLength = 10;
+    String input = "Mr John Smith    ";
+    int strLength = 13;
 
     replaceSpaces(input.toCharArray(), strLength);
   }
