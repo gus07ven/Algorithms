@@ -106,7 +106,34 @@ public class LinkedListAdder {
     return finalList;
   }
 
+  static LinkedListNode addList(LinkedListNode l1, LinkedListNode l2, int carry){
+    if(l1 == null && l2 == null && carry == 0){
+      return null;
+    }
+
+    LinkedListNode result = new LinkedListNode();
+    int value = carry;
+    if(l1 != null){
+      value += l1.data;
+    }
+    if(l2 != null){
+      value += l2.data;
+    }
+
+    result.data = value % 10; // Second digit of number
+
+    if(l1 != null || l2 != null){
+      LinkedListNode more = addList(l1 == null ? null : l1.next,
+                                    l2 == null ? null : l2.next,
+                                    value >= 10 ? 1 : 0);
+      result.setNext(more);
+    }
+    return result;
+  }
+
   public static void main(String[] args) {
+
+    // To run my method
     SLinkedList.Node head = new SLinkedList.Node(7);
     SLinkedList.Node node1 = new SLinkedList.Node(1);
     SLinkedList.Node node2 = new SLinkedList.Node(6);
@@ -114,21 +141,36 @@ public class LinkedListAdder {
     head.next = node1;
     node1.next = node2;
 //    node2.next = node3;
-
     SLinkedList.Node head2 = new SLinkedList.Node(5);
     SLinkedList.Node node4 = new SLinkedList.Node(9);
     SLinkedList.Node node5 = new SLinkedList.Node(2);
     SLinkedList.Node node6 = new SLinkedList.Node(8);
-
     head2.next = node4;
     node4.next = node5;
     node5.next = node6;
-
     SLinkedList sll = new SLinkedList();
-
     // Inputs are given in reverse order 7 -> 1 -> 6 = 617
     // Output will be in reverse order
-    sll.head = sumReversedLinkedLists(head, head2);
-    sll.printList();
+//    sll.head = sumReversedLinkedLists(head, head2);
+//    sll.printList();
+
+    // To run books method
+    LinkedListNode h = new LinkedListNode(7);
+    LinkedListNode n1 = new LinkedListNode(1);
+    LinkedListNode n2 = new LinkedListNode(6);
+    h.next = n1;
+    n1.next = n2;
+    LinkedListNode h2 = new LinkedListNode(5);
+    LinkedListNode n3 = new LinkedListNode(9);
+    LinkedListNode n4 = new LinkedListNode(2);
+    h2.next = n3;
+    n3.next = n4;
+    LinkedListNode result = null;
+    result = addList(h, h2, 0);
+
+    while(result != null){
+      System.out.println(result.data);
+      result = result.next;
+    }
   }
 }
