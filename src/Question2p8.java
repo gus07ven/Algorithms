@@ -6,16 +6,35 @@ public class Question2p8 {
     if(head == null) return null;
 
     HashSet<SLinkedList.Node> set = new HashSet<>();
+    SLinkedList.Node next = null;
     while(head != null){
       if(set.contains(head)){
         break;
       } else {
-
+        next = head.next;
+        head.next = null;
         set.add(head);
-        head = head.next;
+        head = next;
       }
     }
-    return head;
+    return head; // head will be null if no cycle is present
+  }
+
+  static SLinkedList.Node findCycleUsingRunners(SLinkedList.Node head){
+    if(head == null) return null;
+
+    SLinkedList.Node slow = head;
+    SLinkedList.Node fast = head.next.next;
+
+    while(slow != null && fast.next.next != null){
+      if(slow == fast) {
+        return slow;
+      } else {
+        slow = slow.next;
+        fast = fast.next.next;
+      }
+    }
+    return null;
   }
 
 
@@ -37,6 +56,6 @@ public class Question2p8 {
     node6.next = node4;
     SLinkedList sll = new SLinkedList();
     sll.head = head;
-    System.out.println("The corrupt node is: " + findCycleNode(head).data);
+    System.out.println("The corrupt node is: " + findCycleUsingRunners(head).data);
   }
 }
