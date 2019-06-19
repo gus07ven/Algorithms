@@ -2,39 +2,36 @@ import java.util.HashSet;
 
 public class Question2p8 {
 
-  static SLinkedList.Node findCycleNode(SLinkedList.Node head){
-    if(head == null) return null;
-
-    HashSet<SLinkedList.Node> set = new HashSet<>();
-    SLinkedList.Node next = null;
-    while(head != null){
-      if(set.contains(head)){
-        break;
-      } else {
-        next = head.next;
-        head.next = null;
-        set.add(head);
-        head = next;
-      }
-    }
-    return head; // head will be null if no cycle is present
-  }
-
   static SLinkedList.Node findCycleUsingRunners(SLinkedList.Node head){
     if(head == null) return null;
 
     SLinkedList.Node slow = head;
-    SLinkedList.Node fast = head.next.next;
+    SLinkedList.Node fast = head;
 
-    while(slow != null && fast.next.next != null){
-      if(slow == fast) {
-        return slow;
-      } else {
-        slow = slow.next;
-        fast = fast.next.next;
+    // Find meeting point. This will be LOOP_SIZE - k steps into the linked list.
+    while(fast != null && fast.next != null){
+      slow = slow.next;
+      fast = fast.next.next;
+      if(slow == fast){  // Collision
+        break;
       }
     }
-    return null;
+
+    // Error check - no meeting point, and therefore no loop
+    if(fast == null || fast.next == null){
+      return null;
+    }
+
+    // Move slow to head. Keep fast at meeting point. Each are k steps from the loop start. If they move at the
+    // same pace, they must meet at Loop Start.
+    slow = head;
+    while(slow != fast){
+      slow = slow.next;
+      fast = fast.next;
+    }
+
+    // Both now point to the start of the loop
+    return fast;
   }
 
 
