@@ -1,4 +1,6 @@
-package PACKAGE_NAME;
+public class Cat extends Animal {
 
-public class Cat {
+  public Cat(String name){
+    super(name);
+  }
 }
