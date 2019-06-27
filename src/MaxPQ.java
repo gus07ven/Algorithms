@@ -1,12 +1,9 @@
-import java.util.Comparator;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class MaxPQ<T> implements Iterable<T>{
+public class MaxPQ<T> {
 
   private T[] pq;                     // Store items at indices 1 to n
   private int numItems;               // Number of items on priority queue
-  private Comparator<T> comparator;   // Optional comparator
 
   public MaxPQ(T[] keys){
     numItems = keys.length;
@@ -94,7 +91,13 @@ public class MaxPQ<T> implements Iterable<T>{
     return isMaxHeap(left) && isMaxHeap(right);
   }
 
-  public Iterator<T> iterator(){
-    return null;
+  private void resize(int capacity){
+    if(capacity > numItems){
+      T[] temp = (T[]) new Object[capacity];
+      for(int i = 1; i <= numItems; i++){
+        temp[i] = pq[i];
+      }
+      pq = temp;
+    }
   }
 }
