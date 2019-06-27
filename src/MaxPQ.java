@@ -24,7 +24,7 @@ public class MaxPQ<T> implements Iterable<T>{
       int child = 2 * key;
       if(child < numItems && less(child, child + 1)) child++;
       if(!less(key, child)) break;
-      exch(key, child);
+      exchange(key, child);
       key = child;
     }
   }
@@ -35,6 +35,25 @@ public class MaxPQ<T> implements Iterable<T>{
     } else {
       return comparator.compare(pq[key], pq[key2]) < 0;
     }
+  }
+
+  private void exchange(int key, int key2){
+    T swap = pq[key];
+    pq[key] = pq[key2];
+    pq[key2] = swap;
+  }
+
+  private boolean isMaxHeap(){
+    return isMaxHeap(1);
+  }
+
+  private boolean isMaxHeap(int key){
+    if(key > numItems) return true;
+    int left = 2 * key;
+    int right = 2 * key + 1;
+    if(left <= numItems && less(key, left)) return false;
+    if(right <= numItems && less(key, right)) return false;
+    return isMaxHeap(left) && isMaxHeap(right);
   }
 
   public Iterator<T> iterator(){
