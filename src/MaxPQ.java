@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MaxPQ<T> implements Iterable<T>{
 
@@ -17,6 +18,43 @@ public class MaxPQ<T> implements Iterable<T>{
       sink(k);
     }
     assert isMaxHeap();
+  }
+
+  public boolean isEmpty(){
+    return numItems == 0;
+  }
+
+  public int size(){
+    return numItems;
+  }
+
+  public T max(){
+    if(isEmpty()) throw new NoSuchElementException("Priority queue underflow");
+    return pq[1];
+  }
+
+  public void insert(T key){
+    if(numItems == pq.length - 1) resize(2 * pq.length);
+
+    pq[++numItems] = key;
+    swim(numItems);
+    assert isMaxHeap();
+  }
+
+  public T delMax(){
+    if(isEmpty()) throw new NoSuchElementException("Priority queue underflow");
+    T max = pq[1];
+    exchange(1, numItems - 1);
+    sink(1);
+    pq[numItems + 1] = null; // to avoid loitering
+    if((numItems > 0) && numItems == (pq.length - 1) / 4)) resize(pq.length / 2);
+  }
+
+  private void swim(int key){
+    while(key > 1 && less(key / 2, key)){
+      exchange(key, key / 2 );
+      key = key / 2;
+    }
   }
 
   private void sink(int key){
