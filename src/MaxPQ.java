@@ -1,7 +1,7 @@
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
-public class MaxPQ<T> implements Iterable<T>{
+public class MaxPQ<T> {
 
   private T[] pq;                     // Store items at indices 1 to n
   private int numItems;               // Number of items on priority queue
@@ -43,10 +43,11 @@ public class MaxPQ<T> implements Iterable<T>{
   public T delMax(){
     if(isEmpty()) throw new NoSuchElementException("Priority queue underflow");
     T max = pq[1];
-    exchange(1, numItems - 1);
+    exchange(1, numItems--);
     sink(1);
     pq[numItems + 1] = null; // to avoid loitering
-    if((numItems > 0) && numItems == (pq.length - 1) / 4)) resize(pq.length / 2);
+    if((numItems > 0) && numItems == (pq.length - 1) / 4) resize(pq.length / 2);
+    return max;
   }
 
   private void swim(int key){
@@ -101,5 +102,13 @@ public class MaxPQ<T> implements Iterable<T>{
       }
       pq = temp;
     }
+  }
+
+  public static void main(String[] args) {
+    Object[] keys = {1, 2, 3, 4, 5, 6, 7};
+    MaxPQ pq = new MaxPQ(keys);
+    pq.insert(9);
+    System.out.println(pq.delMax());
+    System.out.println(pq.max());
   }
 }
