@@ -41,4 +41,14 @@ public class TreeNode {
     }
   }
 
+  public void printInOrder(){
+    if(left != null){
+      left.printInOrder();
+    }
+    System.out.println(data);
+    if(right != null){
+      right.printInOrder();
+    }
+  }
+
 }
