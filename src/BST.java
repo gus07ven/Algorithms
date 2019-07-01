@@ -48,12 +48,17 @@ public class BST<K extends Comparable<K>, V> {
   }
 
   public void put(K key, V val){
+    if(key == null) throw new IllegalArgumentException("calls put() with a null key");
+    if(val == null){
+      delete(key);
+      return;
+    }
     root = put(root, key, val);
   }
 
   // Best O(log N). Worse O(n)
   private PNode put(PNode x, K key, V val){
-    if(x == null) return new PNode(key, val);
+    if(x == null) return new PNode(key, val, 1);
     int cmp = key.compareTo(x.key);
     if(cmp < 0){
       x.left = put(x.left, key, val);
