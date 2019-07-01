@@ -23,4 +23,22 @@ public class TreeNode {
     }
   }
 
+  public boolean contains(int value){
+    if(value == data) {
+      return true;
+    } else if(value < data){
+      if(left == null){
+        return false;
+      } else {
+        return left.contains(value);
+      }
+    } else {
+      if(right == null){
+        return false;
+      } else {
+        return right.contains(value);
+      }
+    }
+  }
+
 }
