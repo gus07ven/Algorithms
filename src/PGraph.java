@@ -1,12 +1,14 @@
 import java.util.NoSuchElementException;
 
 public class PGraph {
+
   private static final String NEWLINE = System.getProperty("line.separator");
+
   private final int V;
   private int E;
   private Bag<Integer>[] adj;
 
-  public Graph(int vertices){
+  public PGraph(int vertices){
     if(vertices < 0) throw new IllegalArgumentException("Number of vertices must be nonnegative");
     this.V = vertices;
     this.E = 0;
@@ -16,7 +18,7 @@ public class PGraph {
     }
   }
 
-  public Graph(In in) {
+  public PGraph(In in) {
     try {
       this.V = in.readInt();
       if (V < 0) throw new IllegalArgumentException("number of vertices in a Graph must be nonnegative");
@@ -77,5 +79,11 @@ public class PGraph {
       s.append(NEWLINE);
     }
     return s.toString();
+  }
+
+  public static void main(String[] args) {
+    In in = new In(args[0]);
+    PGraph G = new PGraph(in);
+    StdOut.println(G);
   }
 }
