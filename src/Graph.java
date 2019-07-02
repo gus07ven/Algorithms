@@ -3,13 +3,13 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 public class Graph {
-  private HashMap<Integer, Node> nodeLookup = new HashMap<Integer, Node>();
+  public HashMap<Integer, Node> nodeLookup = new HashMap<Integer, Node>();
 
   public static class Node {
-    private int id;
+    int id;
     LinkedList<Node> adjacent = new LinkedList<Node>();
 
-    private Node(int id){
+    public Node(int id){
       this.id = id;
     }
   }
