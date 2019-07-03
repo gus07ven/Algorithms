@@ -68,6 +68,11 @@ public class PGraph {
     return adj[v];
   }
 
+  public int degree(int v){
+    validateVertex(v);
+    return adj[v].size();
+  }
+
   public String toString() {
     StringBuilder s = new StringBuilder();
     s.append(V + " vertices, " + E + " edges " + NEWLINE);
