@@ -2,6 +2,7 @@ public class TreeNode {
 
   int data;
   TreeNode left, right;
+  TreeNode parent;
 
   public TreeNode(int data){
     this.data = data;
@@ -49,6 +50,26 @@ public class TreeNode {
     if(right != null){
       right.printInOrder();
     }
+  }
+
+  public void printPreOrder(){
+    System.out.println(data);
+    if(left != null){
+      left.printInOrder();
+    }
+    if(right != null){
+      right.printInOrder();
+    }
+  }
+
+  public void printPostOrder(){
+    if(left != null){
+      left.printInOrder();
+    }
+    if(right != null){
+      right.printInOrder();
+    }
+    System.out.println(data);
   }
 
 }
