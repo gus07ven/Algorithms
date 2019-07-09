@@ -55,19 +55,19 @@ public class TreeNode {
   public void printPreOrder(){
     System.out.println(data);
     if(left != null){
-      left.printInOrder();
+      left.printPreOrder();
     }
     if(right != null){
-      right.printInOrder();
+      right.printPreOrder();
     }
   }
 
   public void printPostOrder(){
     if(left != null){
-      left.printInOrder();
+      left.printPostOrder();
     }
     if(right != null){
-      right.printInOrder();
+      right.printPostOrder();
     }
     System.out.println(data);
   }
