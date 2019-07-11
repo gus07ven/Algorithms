@@ -13,7 +13,7 @@ public class BreadthFirstPaths {
   }
 
   private void bfs(PGraph graph, int source){
-    GenQueueArr<Integer> q = new GenQueueArr<Integer>();
+    GenQueueArr<Integer> q = new GenQueueArr<>(graph.V());
     for(int v = 0; v < graph.V(); v++){
       distTo[v] = Integer.MAX_VALUE;
     }
