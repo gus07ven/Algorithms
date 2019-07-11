@@ -11,7 +11,7 @@ public class Bag<T> implements Iterable<T> {
     private Node<T> next;
   }
 
-  public Bag(){
+  public Bag() {
     first = null;
     n = 0;
   }
@@ -36,7 +36,7 @@ public class Bag<T> implements Iterable<T> {
     return new ListIterator<T>(first);
   }
 
-  private class ListIterator implements Iterator<T>{
+  private class ListIterator<T> implements Iterator<T>{
 
     private Node<T> current;
 
