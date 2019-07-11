@@ -13,7 +13,7 @@ public class TreeNode2 {
   }
 
   public TreeNode2 getRandomNode(){
-    int leftSize = left == null ? 0 : left.size();
+    int leftSize = left == null ? 0 : left.size;
     Random random = new Random();
     int index = random.nextInt(size);
     if(index <  leftSize){
@@ -23,6 +23,23 @@ public class TreeNode2 {
     } else {
       return right.getRandomNode();
     }
+  }
+
+  public void insertInOrder(int d){
+    if(d <= data){
+      if(left == null) {
+        left = new TreeNode2(d);
+      } else {
+        left.insertInOrder(d);
+      }
+    } else {
+      if(right == null) {
+        right = new TreeNode2(d);
+      } else {
+        right.insertInOrder(d);
+      }
+    }
+    size++;
   }
 
 }
