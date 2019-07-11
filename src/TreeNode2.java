@@ -12,16 +12,14 @@ public class TreeNode2 {
     size = 1;
   }
 
-  public TreeNode2 getRandomNode(){
+  public TreeNode2 getIthNode(int i){
     int leftSize = left == null ? 0 : left.size;
-    Random random = new Random();
-    int index = random.nextInt(size);
-    if(index <  leftSize){
-      return left.getRandomNode();
-    } else if(index == leftSize){
+    if(i < leftSize){
+      return left.getIthNode(i);
+    } else if(i == leftSize){
       return this;
     } else {
-      return right.getRandomNode();
+      return right.getIthNode(i - (leftSize + 1));
     }
   }
 
