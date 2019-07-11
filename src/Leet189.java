@@ -37,7 +37,7 @@ public class Leet189 {
   public static void main(String[] args) {
     int[] nums = {1,2,3,4,5,6,7};
     Leet189 leet = new Leet189();
-    leet.rotate(nums , 3);
+    leet.rotate2(nums , 3);
     for (Integer i: nums) {
       System.out.println(i);
     }
