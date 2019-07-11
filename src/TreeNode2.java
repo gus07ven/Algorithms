@@ -42,4 +42,17 @@ public class TreeNode2 {
     size++;
   }
 
+  public int size(){ return size; }
+
+  public int data(){ return data; }
+
+  public TreeNode2 find(int d){
+    if(d == data){
+      return this;
+    } else if(d <= data){
+      return left != null ? left.find(d) : null;
+    } else {
+      return right != null ? right.find(d) : null;
+    }
+  }
 }
