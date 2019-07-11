@@ -1,12 +1,14 @@
 import java.util.EmptyStackException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class GenStackArr<T> {
+public class GenStackArr<T> implements Iterable<T> {
 
   private T[] s;
   private int top;
 
-  public GenStackArr(int capacity){
-    s = (T[]) new Object[capacity];
+  public GenStackArr(){
+    s = (T[]) new Object[4];
     top = 0;
   }
 
@@ -14,8 +16,22 @@ public class GenStackArr<T> {
     return top == 0;
   }
 
+  public int size(){
+    return top;
+  }
+
+  private void resize(int capacity){
+    if(capacity >= top){
+      T[] temp = (T[]) new Object[capacity];
+      for(int i = 0; i < top; i++){
+        temp[i] = s[i];
+      }
+      s = temp;
+    }
+  }
+
   public void push(T item){
-    if(top == s.length) throw new StackOverflowError();
+    if(top == s.length) resize(2 * s.length);
     s[top++] = item;
   }
 
@@ -24,6 +40,7 @@ public class GenStackArr<T> {
     T retVal = s[top - 1];
     s[top - 1] = null;
     top--;
+    if(top > 0 && top == s.length/4) resize(s.length/2);
     return retVal;
   }
 
@@ -32,18 +49,38 @@ public class GenStackArr<T> {
     return s[top - 1];
   }
 
-  public static void main(String[] args) {
+  public Iterator<T> iterator(){
+    return new StackIterator();
+  }
 
-    GenStackArr gsa = new GenStackArr(3);
-    System.out.println(gsa.isEmpty());
-    gsa.push("Gustavo");
-    gsa.push("Luis");
-    gsa.push("Mariano");
-    System.out.println(gsa.pop());
-    System.out.println(gsa.pop());
-    System.out.println(gsa.isEmpty());
-    System.out.println(gsa.peek());
-    System.out.println(gsa.pop());
-    System.out.println(gsa.isEmpty());
+  private class StackIterator implements Iterator<T> {
+    private int i;
+
+    public StackIterator(){
+      i = top - 1;
+    }
+
+    public boolean hasNext(){
+      return i >= 0;
+    }
+
+    public void remove(){
+      throw new UnsupportedOperationException();
+    }
+
+    public T next(){
+      if(!hasNext()) throw new NoSuchElementException();
+      return s[i--];
+    }
+  }
+
+  public static void main(String[] args) {
+    GenStackArr<String> stack = new GenStackArr<String>();
+    while(!StdIn.isEmpty()) {
+      String item = StdIn.readString();
+      if(!item.equals("-")) stack.push(item);
+      else if (!stack.isEmpty()) StdOut.print(stack.pop() + " ");
+    }
+    StdOut.println("(" + stack.size() + " left on stack)");
   }
 }
