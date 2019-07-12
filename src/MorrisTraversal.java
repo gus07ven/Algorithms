@@ -21,6 +21,27 @@ public class MorrisTraversal {
     }
   }
 
+  public static void preorder(TreeNode root) {
+    TreeNode current = root;
+
+    while (current != null) {
+      if (current.left == null) {
+        System.out.println(current.data);
+        current = current.right;
+      } else {
+        TreeNode predecessor = findPredecessor(current, current.left);
+        if (predecessor.right == null) {
+          predecessor.right = current;
+          System.out.println(current.data);
+          current = current.left;
+        } else {
+          predecessor.right = null;
+          current = current.right;
+        }
+      }
+    }
+  }
+
   public static TreeNode findPredecessor(TreeNode current, TreeNode predecessor) {
     while (predecessor.right != null && predecessor.right != current) {
       predecessor = predecessor.right;
@@ -39,6 +60,6 @@ public class MorrisTraversal {
     root.insert(12);
     //root.printInOrder();
 
-    inorder(root);
+    preorder(root);
   }
 }
