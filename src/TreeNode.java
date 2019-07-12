@@ -1,7 +1,7 @@
 public class TreeNode {
 
   int data;
-  TreeNode left, right;
+  TreeNode left, right, next;
   TreeNode parent;
 
   public TreeNode(int data){
