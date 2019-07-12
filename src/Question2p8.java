@@ -1,4 +1,3 @@
-import java.util.HashSet;
 
 public class Question2p8 {
 
@@ -34,6 +33,21 @@ public class Question2p8 {
     return fast;
   }
 
+  static void changeValue(int myValue){
+    System.out.println("I am changing the value.");
+    myValue = 0;
+    System.out.println("Now the value is " + myValue);
+  }
+
+  static void changeName(String str){
+    str = "Dickens";
+    System.out.println("In changeName, the name is now " + str);
+  }
+
+  static void changeNodeData(SLinkedList.Node node){
+    node.data = 17;
+    System.out.println("Node data value is " + node.data);
+  }
 
   public static void main(String[] args) {
     // To run my implementation
@@ -54,5 +68,6 @@ public class Question2p8 {
     SLinkedList sll = new SLinkedList();
     sll.head = head;
     System.out.println("The corrupt node is: " + findCycleUsingRunners(head).data);
+
   }
 }
