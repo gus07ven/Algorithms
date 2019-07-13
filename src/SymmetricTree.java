@@ -45,8 +45,8 @@ public class SymmetricTree {
     System.out.println(st.isSymmetric(root));
 
     // Iterative solution
-    SymmetricTree st2 = new SymmetricTree();
-    System.out.println(st2.isSymmetricIter(root));
+//    SymmetricTree st2 = new SymmetricTree();
+//    System.out.println(st2.isSymmetricIter(root));
   }
 }
 
