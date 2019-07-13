@@ -1,4 +1,15 @@
-package PACKAGE_NAME;
+public class StackWithMin extends Stack<NodeWithMin> {
 
-public class StackWithMin {
+  public void push(int value){
+    int newMin = Math.min(value, min());
+    super.push(new NodeWithMin(value, newMin));
+  }
+
+  public int min(){
+    if(this.isEmpty()){
+      return Integer.MAX_VALUE; // Error value
+    } else {
+      return this.peek().min;
+    }
+  }
 }
