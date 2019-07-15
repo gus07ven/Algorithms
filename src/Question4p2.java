@@ -1,34 +1,23 @@
 public class Question4p2 {
 
-  public static TreeNode minimalTree(int[] nums){
-    if(nums.length == 0) return null;
-    int mid = nums.length / 2;
-    int high = nums.length - 1;
-    int helperLeft = mid - 1;
-    int helperRight = mid + 1;
-    int counter = 0;
-    TreeNode root = new TreeNode(nums[mid]);
-    boolean loop = true;
+  public static TreeNode createMinimalTree(int[] array){
+    return createMinimalTree(array, 0, array.length - 1);
+  }
 
-    while(counter < high){
-      if(!loop){
-        root.insert(nums[helperLeft]);
-        helperLeft--;
-        loop = true;
-      } else {
-        root.insert(nums[helperRight]);
-        helperRight++;
-        loop = false;
-      }
-      counter++;
+  public static TreeNode createMinimalTree(int[] array, int start, int end){
+    if(end < start){
+      return null;
     }
-
-    return root;
+    int mid = (start + end) / 2;
+    TreeNode n = new TreeNode(array[mid]);
+    n.left = createMinimalTree(array, start, mid - 1);
+    n.right = createMinimalTree(array, mid + 1, end);
+    return n;
   }
 
   public static void main(String[] args) {
     int[] nums = {2, 7, 9, 10, 12, 15, 27};
-    TreeNode result = minimalTree(nums);
+    TreeNode result = createMinimalTree(nums);
     result.printInOrder();
   }
 }
