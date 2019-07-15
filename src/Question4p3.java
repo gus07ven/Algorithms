@@ -34,7 +34,7 @@ public class Question4p3 {
     if (lists.size() == level) {
       // Level not contained in list
       list = new LinkedList<TreeNode>();
-      list.add(list);
+      lists.add(list);
     } else {
       list = lists.get(level);
     }
