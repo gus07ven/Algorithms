@@ -3,7 +3,7 @@ public class WQUPC {
     private int[] id;
     private int[] size;
 
-    public WeightedQU(int N){
+    public WQUPC(int N){
       id = new int[N];
       size = new int[N];
 
