@@ -42,13 +42,13 @@ public class Trie {
 
     ArrayList<String> list = new ArrayList<>();
     list.add("hello");
-    list.add("help");
+    list.add("car");
     list.add("hi");
-    list.add("helicopter");
-    list.add("heaven");
+    list.add("cat");
+    list.add("fly");
 
     Trie t = new Trie(list);
     System.out.println(t.contains("heaven"));
-    System.out.println(t.contains("heavy"));
+    System.out.println(t.contains("car"));
   }
 }
