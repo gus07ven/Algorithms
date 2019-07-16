@@ -26,6 +26,27 @@ public class BitRev {
     return num | (1 << i);
   }
 
+  public static int clearBit(int num, int i){
+    int mask = ~(1 << i);
+    return num & mask;
+  }
+
+  public static int clearBitMSBthroughI(int num, int i){
+    int mask = (1 << i) - 1;
+    return num & mask;
+  }
+
+  public static int clearBitsIthrough0(int num, int i){
+    int mask = (-1 << (i + 1));
+    return num & mask;
+  }
+
+  public static int updateBit(int num, int i, boolean bitIs1){
+    int value = bitIs1 ? 1 : 0;
+    int mask = ~(1 << i);
+    return (num & mask) | (value << i);
+  }
+
   public static void main(String[] args) {
 
     int x = 7;
@@ -60,5 +81,21 @@ public class BitRev {
     System.out.println("Set bit examples: ");
     System.out.println(setBit(6, 2));
     System.out.println(setBit(6, 0));
+
+    System.out.println("Clear bit examples: ");
+    System.out.println(clearBit(14, 3));
+    System.out.println(clearBit(6, 1));
+
+    System.out.println("Clear MSB-i examples: ");
+    System.out.println(clearBitMSBthroughI(50, 1));
+    System.out.println(clearBitMSBthroughI(50, 4));
+
+    System.out.println("Clear Ithrough0 examples: ");
+    System.out.println(clearBitsIthrough0(50, 2));
+    System.out.println(clearBitsIthrough0(50, 4));
+
+    System.out.println("Update bit examples: ");
+    System.out.println(updateBit(50, 1, true));
+    System.out.println(updateBit(50, 5, false));
   }
 }
