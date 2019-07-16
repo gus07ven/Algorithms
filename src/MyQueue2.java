@@ -34,7 +34,6 @@ public class MyQueue2<T> {
     return stackOldest.pop();
   }
 
-
   public static void main(String[] args) {
     MyQueue2<Integer> mq = new MyQueue2<>();
     mq.add(1);
