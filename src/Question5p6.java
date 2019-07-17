@@ -7,10 +7,19 @@ public class Question5p6 {
     return Integer.bitCount(result);
   }
 
+  public static int bitSwapRequired(int a, int b){
+    int count = 0;
+    for(int c = a ^ b; c != 0; c = c >>> 1){
+      count += c & 1;
+    }
+    return count;
+  }
+
   public static void main(String[] args) {
     int num1 = 29;
     int num2 = 15;
 
     System.out.println(numDiffBits(num1, num2));
+    System.out.println(bitSwapRequired(num1, num2));
   }
 }
