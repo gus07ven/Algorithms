@@ -13,6 +13,11 @@ public class Leet326 {
     return n == 1;
   }
 
+  public static boolean isPowerOfThree3(int n){
+    double epsilon = .0001;
+    return (Math.log(n) / Math.log(3) + epsilon) % 1 <= 2 * epsilon;
+  }
+
   public static void main(String[] args) {
     System.out.println("O(1) method call results:");
     System.out.println(isPowerOfThree(81));
@@ -22,5 +27,10 @@ public class Leet326 {
     System.out.println("O(log3(n)) results:");
     System.out.println(isPowerOfThree2(81));
     System.out.println(isPowerOfThree2(4));
+
+    System.out.println();
+    System.out.println("O(?) results:");
+    System.out.println(isPowerOfThree3(81));
+    System.out.println(isPowerOfThree3(4));
   }
 }
