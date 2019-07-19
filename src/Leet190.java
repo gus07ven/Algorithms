@@ -1,3 +1,8 @@
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class Leet190 {
 
   public static int reverseNumBits(int num){
@@ -26,8 +31,13 @@ public class Leet190 {
     return reversed;
   }
 
+  public static int reverseBitsFunc(int n){
+    return Integer.reverse(n);
+  }
+
   public static void main(String[] args) {
     System.out.println(reverseNumBits(1));
     System.out.println(reverseBits(1));
+    System.out.println(reverseBitsFunc(1));
   }
 }
