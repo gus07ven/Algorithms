@@ -16,7 +16,18 @@ public class Leet190 {
     return Integer.parseUnsignedInt(reversed.toString(), 2);
   }
 
+  public static int reverseBits(int n) {
+    int reversed = 0;
+    for(int i = 0; i < Integer.BYTES * 8; i++){
+      reversed = reversed << 1;
+      reversed = reversed|(n & 1);
+      n = n >> 1;
+    }
+    return reversed;
+  }
+
   public static void main(String[] args) {
     System.out.println(reverseNumBits(1));
+    System.out.println(reverseBits(1));
   }
 }
