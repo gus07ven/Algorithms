@@ -18,11 +18,9 @@ public class Leet122 {
   }
 
   public static int maxProfitFunc(int[] prices){
-    return Arrays.stream(prices).reduce(0, (a,b) -> getDifference(a,b));
-  }
-
-  public static int getDifference(int a, int b){
-    return (b - a) > 0 ? (b - a) : a;
+    return IntStream.range(1, prices.length).
+            map(i -> prices[i] > prices[i - 1] ? prices[i] - prices[i - 1] : 0).
+            sum();
   }
 
   public static void main(String[] args) {
