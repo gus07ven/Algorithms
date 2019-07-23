@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Leet121 {
 
   public static int maxProfit(int[] prices){
