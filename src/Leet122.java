@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Leet122 {
@@ -16,8 +17,17 @@ public class Leet122 {
     return profit;
   }
 
+  public static int maxProfitFunc(int[] prices){
+    return Arrays.stream(prices).reduce(0, (a,b) -> getDifference(a,b));
+  }
+
+  public static int getDifference(int a, int b){
+    return (b - a) > 0 ? (b - a) : a;
+  }
+
   public static void main(String[] args) {
-    int[] nums = {1,7};
+    int[] nums = {7,1,5,3,6,4};
     System.out.println(maxProfit(nums));
+    System.out.println(maxProfitFunc(nums));
   }
 }
