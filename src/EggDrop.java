@@ -30,7 +30,8 @@ public class EggDrop {
 
   public static void main(String[] args) {
     EggDrop ed = new EggDrop();
+    int floors = 100;
     System.out.println(ed.findBreakingPoint(100));
-    System.out.println(ed.countDrops);
+    System.out.println("The number of drops for " + floors + " is " + ed.countDrops);
   }
 }
