@@ -39,8 +39,21 @@ public class Lockers {
     return openDoors;
   }
 
+  public static int numOpenDoorsOptimal(int lockers){
+    if(lockers == 0) return 0;
+
+    int openDoors = 1;
+    for(int i = 1; i < lockers; i++){
+      double sq = Math.sqrt(i);
+      if((sq - Math.floor(sq)) == 0) openDoors++;
+    }
+    return openDoors;
+  }
+
   public static void main(String[] args) {
     int numLockers = 100;
     System.out.println(numOpenDoors(numLockers));
+    System.out.println(numOpenDoorsOptimal(numLockers));
+    System.out.println(numOpenDoorsOptimal(25));
   }
 }
