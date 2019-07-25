@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class BoyGirlRatio {
 
   public static double runNFamilies(int n){
@@ -9,5 +11,20 @@ public class BoyGirlRatio {
       boys += genders[0];
     }
     return girls / (double) (boys + girls);
+  }
+
+  public static int[] runOneFamily(){
+    Random random = new Random();
+    int boys = 0;
+    int girls = 0;
+    while(girls == 0){
+      if(random.nextBoolean()){
+        girls += 1;
+      } else {
+        boys += 1;
+      }
+    }
+    int[] genders = {girls, boys};
+    return genders;
   }
 }
