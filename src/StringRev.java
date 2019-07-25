@@ -21,6 +21,6 @@ public class StringRev {
 
     String regString = longString.toString();
     System.out.println(regString.getClass());
-
+    System.out.println(longString.substring(2,15));
   }
 }
