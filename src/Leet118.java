@@ -30,5 +30,13 @@ public class Leet118 {
   public static void main(String[] args) {
     int numRows = 0;
     List<List<Integer>> result = generate(numRows);
+
+    // Print result
+    for(List<Integer> list : result){
+      for(Integer i : list){
+        System.out.print(i);
+      }
+      System.out.println();
+    }
   }
 }
