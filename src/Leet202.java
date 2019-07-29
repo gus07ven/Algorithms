@@ -11,6 +11,13 @@ public class Leet202 {
     while (n > 1) {
       int newNum = 0;
 
+      while (n > 0) {
+        int digit = n % 10;
+        newNum += digit * digit;
+        n = n / 10;
+      }
+      if (numsSeen.contains(newNum)) return false;
+      numsSeen.add(newNum);
       n = newNum;
     }
     return true;
