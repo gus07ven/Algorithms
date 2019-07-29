@@ -10,4 +10,10 @@ public class Singleton {
     }
     return _instance;
   }
+
+  public static void main(String[] args) {
+    Singleton s = getInstance();
+    Singleton same = getInstance();
+    System.out.println(s.equals(same));
+  }
 }
