@@ -24,7 +24,7 @@ public class Leet202 {
   }
 
   public static void main(String[] args) {
-    int happy = 19;
+    int happy = 50;
     System.out.println(isHappy(happy));
   }
 }
