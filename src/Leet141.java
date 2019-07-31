@@ -25,6 +25,7 @@ public class Leet141 {
     SLinkedList.Node three = new SLinkedList.Node(3);
     head.next = two;
     two.next = three;
+    three.next = head;
 
     System.out.println(hasCycle(head));
   }
