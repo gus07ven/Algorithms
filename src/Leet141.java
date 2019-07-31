@@ -1,6 +1,9 @@
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Leet141 {
+
   public static boolean hasCycle(SLinkedList.Node head) {
     if(head == null) return false;
 
@@ -19,6 +22,19 @@ public class Leet141 {
     return false;
   }
 
+  public static boolean hasCycle2(SLinkedList.Node head){
+    Set<SLinkedList.Node> nodesSeen = new HashSet<>();
+    while (head != null) {
+      if (nodesSeen.contains(head)) {
+        return true;
+      } else {
+        nodesSeen.add(head);
+      }
+      head = head.next;
+    }
+    return false;
+  }
+
   public static void main(String[] args) {
     SLinkedList.Node head = new SLinkedList.Node(1);
     SLinkedList.Node two = new SLinkedList.Node(2);
@@ -28,5 +44,6 @@ public class Leet141 {
     three.next = head;
 
     System.out.println(hasCycle(head));
+    System.out.println(hasCycle2(head));
   }
 }
