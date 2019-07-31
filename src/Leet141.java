@@ -35,6 +35,20 @@ public class Leet141 {
     return false;
   }
 
+  public static boolean hasCycleSlowFast(SLinkedList.Node head){
+    if(head == null || head.next == null){
+      return false;
+    }
+    SLinkedList.Node slow = head;
+    SLinkedList.Node fast = head.next;
+    while(slow != fast){
+      if(fast == null || fast.next == null) return false;
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    return true;
+  }
+
   public static void main(String[] args) {
     SLinkedList.Node head = new SLinkedList.Node(1);
     SLinkedList.Node two = new SLinkedList.Node(2);
@@ -45,5 +59,6 @@ public class Leet141 {
 
     System.out.println(hasCycle(head));
     System.out.println(hasCycle2(head));
+    System.out.println(hasCycleSlowFast(head));
   }
 }
