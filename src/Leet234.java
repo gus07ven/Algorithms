@@ -31,6 +31,28 @@ public class Leet234 {
     return true;
   }
 
+  public static boolean isPalindromeOpt(SLinkedList.Node head) {
+    SLinkedList.Node fast = head, slow = head;
+    while (fast != null && fast.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+    if (fast != null) { // odd nodes: let right half smaller
+      slow = slow.next;
+    }
+    slow = reverse(slow);
+    fast = head;
+
+    while (slow != null) {
+      if (fast.data != slow.data) {
+        return false;
+      }
+      fast = fast.next;
+      slow = slow.next;
+    }
+    return true;
+  }
+
   public static void main(String[] args) {
     SLinkedList.Node head = new SLinkedList.Node(3);
     SLinkedList.Node node1 = new SLinkedList.Node(1);
@@ -47,5 +69,6 @@ public class Leet234 {
     node5.next = null;
 //    node6.next = node4;
     System.out.println(isPalindrome(head));
+    System.out.println(isPalindromeOpt(head));
   }
 }
