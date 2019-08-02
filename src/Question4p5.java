@@ -35,6 +35,7 @@ public class Question4p5 {
     root.insert(5);
     root.insert(7);
     root.insert(2);
+    System.out.println("Print in order");
     root.printInOrder();
 
     System.out.println("Is the tree a BST? " + isBST(root));
