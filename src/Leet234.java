@@ -53,6 +53,17 @@ public class Leet234 {
     return true;
   }
 
+  public static SLinkedList.Node reverse(SLinkedList.Node head) {
+    SLinkedList.Node prev = null;
+    while (head != null) {
+      SLinkedList.Node next = head.next;
+      head.next = prev;
+      prev = head;
+      head = next;
+    }
+    return prev;
+  }
+
   public static void main(String[] args) {
     SLinkedList.Node head = new SLinkedList.Node(3);
     SLinkedList.Node node1 = new SLinkedList.Node(1);
