@@ -26,8 +26,13 @@ public class Leet125 {
     return true;
   }
 
+  public static boolean isPalTwo(String s){
+    s = s.replaceAll("[^\\w]","").toLowerCase();
+    return s.equals(new StringBuilder(s).reverse().toString())? true: false;
+  }
+
   public static void main(String[] args) {
     String input = "rooo";
-    System.out.println(isPalindrome(input));
+    System.out.println(isPalTwo(input));
   }
 }
