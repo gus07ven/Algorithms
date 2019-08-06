@@ -19,8 +19,14 @@ public class Leet287 {
     return answer;
   }
 
+  // Works for one duplicate
+  public static int findDuplicateConstSpace(int[] nums){
+
+    return Arrays.stream(nums).sum() - (((nums.length - 1) * (nums.length)) / 2);
+  }
+
   public static void main(String[] args) {
-    int[] nums = {1,3,4,2,2};
-    System.out.println(findDuplicate(nums));
+    int[] nums = {3,1,3,4,2};
+    System.out.println(findDuplicateConstSpace(nums));
   }
 }
