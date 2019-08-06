@@ -3,20 +3,14 @@ import java.util.ArrayList;
 public class Leet125 {
 
   public static boolean isPalindrome(String s) {
-    if(s.isEmpty()) return true;
+    if(s.isEmpty() || s.length() == 1) return true;
 
-    ArrayList<Character> alphaNumStr = new ArrayList<>();
-    for(int i = 0; i < s.length(); i++){
-      if(Character.isLetterOrDigit(s.charAt(i))){
-        alphaNumStr.add(s.toLowerCase().charAt(i));
-      }
-    }
-
+    s = s.replaceAll("[^\\w]","").toLowerCase();
     int leftPtr = 0;
-    int rightPtr = alphaNumStr.size() - 1;
-    int mid = alphaNumStr.size() / 2;
+    int rightPtr = s.length() - 1;
+    int mid = s.length() / 2;
     while(leftPtr <= mid && rightPtr >= mid){
-      if(alphaNumStr.get(leftPtr).equals(alphaNumStr.get(rightPtr))){
+      if(s.toLowerCase().charAt(leftPtr) == s.toLowerCase().charAt(rightPtr)){
         leftPtr++;
         rightPtr--;
       } else {
@@ -32,7 +26,7 @@ public class Leet125 {
   }
 
   public static void main(String[] args) {
-    String input = "rooo";
+    String input = "A man, a plan, a canal: Panama";
     System.out.println(isPalTwo(input));
   }
 }
