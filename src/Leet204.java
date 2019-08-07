@@ -13,8 +13,24 @@ public class Leet204 {
     return count;
   }
 
+  public static int countPrimesOptimized(int n) {
+    if(n <= 2) return 0;
+
+    boolean[] composite = new boolean[n];
+    int count = 0;
+    for(int i = 2; i < n; i++) {
+      if(!composite[i]) {
+        count++;
+        for (int j = 2; i*j < n; j++) {
+          composite[i*j] = true;
+        }
+      }
+    }
+    return count;
+  }
+
   public static void main(String[] args) {
     int n = 10;
-    System.out.println(countPrimes(n));
+    System.out.println(countPrimesOptimized(n));
   }
 }
