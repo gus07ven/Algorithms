@@ -15,9 +15,16 @@ public class Leet69 {
     return num;
   }
 
+  public static int mySqrt2(int x){
+    if (x == 0) return 0;
+    for (int i = 1; i <= x / i; i++)
+      if (i <= x / i && (i + 1) > x / (i + 1))
+        return i;
+    return -1;
+  }
+
   public static void main(String[] args) {
-    int input = 4;
-    int input2 = 3;
-    System.out.println(mySqrt(input2));
+    int input = 8;
+    System.out.println(mySqrt2(input));
   }
 }
