@@ -123,10 +123,10 @@ public class PalindromePermutation {
 
 
   public static void main(String[] args) {
-    String odd = "2taco cat2";
-    String even = "rotorm";
+    String odd = "taco cat";
+    String even = "roor";
 
-    System.out.println(isPermutationOfPalindromeThree(odd));
-    System.out.println(isPermutationOfPalindromeThree(even));
+    System.out.println(isPermutationOfPalindrome(odd));
+    System.out.println(isPalindromePermutation(even));
   }
 }
