@@ -11,22 +11,18 @@ public class Leet771 {
     }
 
     char[] stones = S.toCharArray();
+    int numJewels = 0;
     for(int i = 0; i < stones.length; i++){
       if(jewels.containsKey(stones[i])){
-        jewels.replace(stones[i], jewels.get(stones[i]) + 1);
+        numJewels++;
       }
-    }
-
-    int numJewels = 0;
-    for (Integer i : jewels.values()) {
-      numJewels += i;
     }
     return numJewels;
   }
 
   public static void main(String[] args) {
-    String J = "z";
-    String S = "ZZ";
+    String J = "aA";
+    String S = "aAAbbbbb";
     System.out.println(numJewelsInStones(J, S));
   }
 }
