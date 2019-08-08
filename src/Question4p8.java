@@ -40,5 +40,6 @@ public class Question4p8 {
     root.right.right = new TreeNode(4);
 
     System.out.println(commonAncestor(root,root.left.left, root.left.right).data);
+    root.printPreOrder();
   }
 }
