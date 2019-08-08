@@ -10,6 +10,8 @@ public class SLinkedList {
     public Node(int d){
       data = d;
     }
+
+    public Node(){}
   }
 
   public void printList(){
