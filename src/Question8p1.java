@@ -35,13 +35,13 @@ public class Question8p1 {
 
   public static void main(String[] args) {
     Instant start = Instant.now();
-    System.out.println(countWays(25));
+    System.out.println(countWays(3));
     Instant finish = Instant.now();
     long timeElapsed = Duration.between(start, finish).toMillis();
     System.out.println("Total time (ms): " + timeElapsed);
 
     Instant start2 = Instant.now();
-    System.out.println(countWaysMemo(25));
+    System.out.println(countWaysMemo(3));
     Instant finish2 = Instant.now();
     long timeElapsed2 = Duration.between(start2, finish2).toMillis();
     System.out.println("Total time (ms): " + timeElapsed2);
