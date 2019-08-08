@@ -38,7 +38,7 @@ public class Question4p12 {
 
   public static void main(String[] args) {
     TreeNode t1 = new TreeNode(10);
-    t1.left = new TreeNode(5);
+    t1.left = new TreeNode(-2);
     t1.right = new TreeNode(-3);
     t1.left.left = new TreeNode(3);
     t1.left.left.left = new TreeNode(3);
