@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class BinarySearch {
 
   public static int binarySearch(int[] array, int key){
@@ -13,4 +15,16 @@ public class BinarySearch {
     return -1;
   }
 
+  public static void main(String[] args) {
+    In input = new In(args[0]);
+    In values = new In(args[1]);
+    int[] whitelist = input.readAllInts();
+    int[] keys = values.readAllInts();
+    Arrays.sort(whitelist);
+
+    for (Integer key : keys) {
+      if(binarySearch(whitelist, key) == -1)
+        StdOut.println(key);
+    }
+  }
 }
