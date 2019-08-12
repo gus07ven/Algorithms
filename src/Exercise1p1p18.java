@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Exercise1p1p18 {
 
   public static int mystery(int a, int b){
