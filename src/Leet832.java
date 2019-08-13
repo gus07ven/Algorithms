@@ -17,8 +17,20 @@ public class Leet832 {
     return newImage;
   }
 
+  private static int[][] alternativeFlipImage(int[][] A){
+    int n = A.length;
+    for(int column = 0; column < n / 2 + n % 2; column++){
+      for(int row = 0; row < n; row++) {
+        int tmp = A[row][column];
+        A[row][column] = A[row][n - 1 - column] ^ 1;
+        A[row][n - 1 - column] = tmp ^ 1;
+      }
+    }
+    return A;
+  }
+
   public static void main(String[] args) {
     int[][] image = {{1,1,0,0}, {1,0,0,1}, {0,1,1,1}, {1,0,1,0}};
-    System.out.println(flipAndInvertImage(image));
+    System.out.println(alternativeFlipImage(image));
   }
 }
