@@ -19,6 +19,18 @@ public class MyArrayList<Item> {
 
   public void add(Item item){
     if(currentIndex > items.length) resize(2 * items.length);
+    items[currentIndex++] = item;
+  }
+
+  public Item remove(int index){
+    if(index < 0 || index > items.length - 1) return null;
+    else {
+      Item item = (Item) items[index];
+      reorderItems(index);
+      currentIndex--;
+      if(currentIndex < items.length / 4) resize(items.length / 2);
+      return item;
+    }
   }
 
   private Object[] resize(int newCapacity){
@@ -28,5 +40,11 @@ public class MyArrayList<Item> {
     }
     items = copy;
     return items;
+  }
+
+  private void reorderItems(int startingIndex){
+    for(int i = 0; i < items.length; i++){
+      if(i >= startingIndex) items[i] = i == items.length - 1 ? null : items[i + 1];
+    }
   }
 }
