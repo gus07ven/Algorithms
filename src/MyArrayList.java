@@ -6,15 +6,19 @@
 
 public class MyArrayList<Item> {
 
-  private Object[] items;
-  private int initCapacity = 10;
+  private Object[] items = new Object[10];
   private int currentIndex = 0;
 
   public Item get(int index){
-    if(index > items.length) return null;
-    for(int i = 0; i < items.length; i++){
-      if(i == index) return (Item) items[i];
+    if(index < 0 || index > items.length) return null;
+    Item item = null;
+    for(int i = 0; i < items.length; i++) {
+      if (i == index) {
+        item = (Item) items[i];
+        break;
+      }
     }
+    return item;
   }
 
   public void add(Item item){
@@ -27,7 +31,7 @@ public class MyArrayList<Item> {
     else {
       Item item = (Item) items[index];
       reorderItems(index);
-      currentIndex--;
+      currentIndex = currentIndex == 0 ? 0 : currentIndex--;
       if(currentIndex < items.length / 4) resize(items.length / 2);
       return item;
     }
@@ -46,5 +50,14 @@ public class MyArrayList<Item> {
     for(int i = 0; i < items.length; i++){
       if(i >= startingIndex) items[i] = i == items.length - 1 ? null : items[i + 1];
     }
+  }
+
+  public static void main(String[] args) {
+    MyArrayList list = new MyArrayList();
+    list.add(5);
+    list.add(6);
+    list.add(7);
+    list.add(8);
+    System.out.println(list.get(3));
   }
 }
