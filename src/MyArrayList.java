@@ -16,4 +16,17 @@ public class MyArrayList<Item> {
       if(i == index) return (Item) items[i];
     }
   }
+
+  public void add(Item item){
+    if(currentIndex > items.length) resize(2 * items.length);
+  }
+
+  private Object[] resize(int newCapacity){
+    Object[] copy = new Object[newCapacity];
+    for(int i = 0; i < items.length; i++){
+      copy[i] = items[i];
+    }
+    items = copy;
+    return items;
+  }
 }
