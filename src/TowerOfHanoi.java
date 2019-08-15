@@ -9,7 +9,7 @@ public class TowerOfHanoi {
   }
 
   public static void main(String[] args) {
-    int n = 5;
+    int n = 4;
     moves(n, true);
   }
 }
