@@ -22,7 +22,7 @@ public class MyArrayList<Item> {
   }
 
   public void add(Item item){
-    if(currentIndex > items.length) resize(2 * items.length);
+    if(currentIndex == items.length) resize(2 * items.length);
     items[currentIndex++] = item;
   }
 
@@ -31,19 +31,18 @@ public class MyArrayList<Item> {
     else {
       Item item = (Item) items[index];
       reorderItems(index);
-      currentIndex = currentIndex == 0 ? 0 : currentIndex--;
+      currentIndex = currentIndex == 0 ? 0 : currentIndex - 1;
       if(currentIndex < items.length / 4) resize(items.length / 2);
       return item;
     }
   }
 
-  private Object[] resize(int newCapacity){
+  private void resize(int newCapacity){
     Object[] copy = new Object[newCapacity];
     for(int i = 0; i < items.length; i++){
       copy[i] = items[i];
     }
     items = copy;
-    return items;
   }
 
   private void reorderItems(int startingIndex){
@@ -54,10 +53,15 @@ public class MyArrayList<Item> {
 
   public static void main(String[] args) {
     MyArrayList list = new MyArrayList();
-    list.add(5);
-    list.add(6);
-    list.add(7);
-    list.add(8);
-    System.out.println(list.get(3));
+    for(int i = 0; i < 10; i++){
+      list.add(i);
+    }
+    System.out.println(list.get(2));
+    System.out.println(list.remove(2));
+    System.out.println(list.get(2));
+    System.out.println(list.get(8));
+    for(int i = 0; i < 5; i++){
+      list.add(i + 10);
+    }
   }
 }
