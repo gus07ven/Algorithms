@@ -9,12 +9,13 @@ public class MergeSort2 {
 
   private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi){
     if(hi <= lo + CUTOFF - 1){
-      InsertionSort.sort(a, lo, hi);
+      InsertionSort.sort(a, lo, hi);     // First optimization
       return;
     }
     int mid = lo + (hi - lo) / 2;
     sort(a, aux, lo, mid);
     sort(a, aux, mid + 1, hi);
+    if(!Helper.less(a[mid + 1], a[mid])) return;    // Second optimization: handle array already sorted.
     merge(a, aux, lo, mid, hi);
   }
 
