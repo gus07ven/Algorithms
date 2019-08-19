@@ -28,4 +28,12 @@ public class QuickSort2 {
     Helper.exch(a, lo, j);  // Swap with partitioning item
     return j;
   }
+
+  public static void main(String[] args) {
+    Character[] text = {'Q','U','I','C','K','S', 'O', 'R', 'T', 'E', 'X', 'A', 'M', 'P', 'L', 'E'};
+    QuickSort2.sort(text);
+    for (Object i : text) {
+      System.out.println(i);
+    }
+  }
 }
