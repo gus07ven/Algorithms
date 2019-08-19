@@ -8,13 +8,19 @@ public class QuickSort2 {
   }
 
   private static void sort(Comparable[] a, int lo, int hi){
-    if(hi <= lo + CUTOFF){            // Opt 1: insertion sort faster with small arrays
-      InsertionSort.sort(a, lo, hi);
-      return;
-    }
+    if(hi <= lo) return;
+    int m = median3(a, lo, lo + (hi - lo) / 2, hi); // Opt 2: pivot item = median
+    Helper.exch(a, lo, m);
+
     int j = partition(a, lo, hi);
     sort(a, lo, j - 1);
     sort(a, j + 1, hi);
+  }
+
+  private static int median3(Comparable[] a, int i, int j, int k) {
+    return (Helper.less(a[i], a[j]) ?
+            (Helper.less(a[j], a[k]) ? j : Helper.less(a[i], a[k]) ? k : i) :
+            (Helper.less(a[k], a[j]) ? j : Helper.less(a[k], a[i]) ? k : i));
   }
 
   private static int partition(Comparable[] a, int lo, int hi){
