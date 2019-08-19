@@ -1,12 +1,17 @@
 public class QuickSort2 {
 
+  private static final int CUTOFF = 10;
+
   public static void sort(Comparable[] a){
     StdRandom.shuffle(a);
     sort(a, 0, a.length - 1);
   }
 
   private static void sort(Comparable[] a, int lo, int hi){
-    if(hi <= lo) return;
+    if(hi <= lo + CUTOFF){            // Opt 1: insertion sort faster with small arrays
+      InsertionSort.sort(a, lo, hi);
+      return;
+    }
     int j = partition(a, lo, hi);
     sort(a, lo, j - 1);
     sort(a, j + 1, hi);
