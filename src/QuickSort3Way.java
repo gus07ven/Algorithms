@@ -15,4 +15,12 @@ public class QuickSort3Way {
     sort(a, lo, lt - 1);
     sort(a, gt + 1, hi);
   }
+
+  public static void main(String[] args) {
+    Integer[] nums = {5, 2, 9, 12, 19, 3, 1, 7};
+    sort(nums, 0, nums.length - 1);
+    for (Integer i : nums){
+      System.out.println(i);
+    }
+  }
 }
