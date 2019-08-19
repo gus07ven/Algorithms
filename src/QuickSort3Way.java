@@ -1,4 +1,11 @@
+import java.util.Arrays;
+
 public class QuickSort3Way {
+
+  public static void sort(Comparable[] a){
+    StdRandom.shuffle(a);
+    sort(a, 0, a.length - 1);
+  }
 
   private static void sort(Comparable[] a, int lo, int hi){
     if(hi <= lo) return;
@@ -18,7 +25,7 @@ public class QuickSort3Way {
 
   public static void main(String[] args) {
     Integer[] nums = {5, 2, 9, 12, 19, 3, 1, 7};
-    sort(nums, 0, nums.length - 1);
+    sort(nums);
     for (Integer i : nums){
       System.out.println(i);
     }
