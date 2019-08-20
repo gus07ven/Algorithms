@@ -10,6 +10,7 @@ public class BST<K extends Comparable<K>, V> {
     private V val;
     private int size;
     private PNode left, right;
+    private int count;    // Num nodes in subtree
 
     public PNode(K key, V val, int size) {
       this.key = key;
@@ -31,7 +32,7 @@ public class BST<K extends Comparable<K>, V> {
 
   private int size(PNode x) {
     if (x == null) return 0;
-    else return x.size;
+    return x.size;
   }
 
   // Return value corresponding to given key, or null if no such key.
@@ -67,6 +68,7 @@ public class BST<K extends Comparable<K>, V> {
     } else {
       x.val = val;
     }
+    x.count = 1 + size(x.left) + size(x.right);
     return x;
   }
 
@@ -130,5 +132,18 @@ public class BST<K extends Comparable<K>, V> {
     PNode t = floor(x.right, key);
     if(t != null) return t;
     else          return x;
+  }
+
+  public int rank(K key){
+    return rank(key, root);
+  }
+
+  // Rank: how many keys are less than k?
+  private int rank(K key, PNode x){
+    if(x == null) return 0;
+    int cmp = key.compareTo(x.key);
+    if      (cmp < 0) return rank(key, x.left);
+    else if (cmp > 0) return 1 + size(x.left) + rank(key, x.right);
+    else              return size(x.left);
   }
 }
