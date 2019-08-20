@@ -115,4 +115,20 @@ public class BST<K extends Comparable<K>, V> {
     x.size = size(x.left) + size(x.right) + 1;
     return x;
   }
+
+  public K floor(K key){
+    PNode x = floor(root, key);
+    if(x == null) return null;
+    return x.key;
+  }
+
+  private PNode floor(PNode x, K key){
+    if(x == null) return null;
+    int cmp = key.compareTo(x.key);
+    if(cmp == 0) return x;
+    if(cmp < 0)  return floor(x.left, key);
+    PNode t = floor(x.right, key);
+    if(t != null) return t;
+    else          return x;
+  }
 }
