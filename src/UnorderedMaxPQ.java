@@ -17,10 +17,11 @@ public class UnorderedMaxPQ<Key extends Comparable<Key>> {
     pq[N++] = x;
   }
 
+  // Soft delete
   public Key delMax(){
     int max = 0;
     for(int i = 1; i < N; i++){
-      if(Helper.less(max, i)) max = i;
+      if(Helper.less(pq[max], pq[i])) max = i;
     }
     Helper.exch(pq, max, N-1);
     return pq[--N];
@@ -31,5 +32,7 @@ public class UnorderedMaxPQ<Key extends Comparable<Key>> {
     umpq.insert(5);
     umpq.insert(17);
     System.out.println(umpq.isEmpty());
+    System.out.println(umpq.pq[0]);
+    System.out.println(umpq.delMax());
   }
 }
