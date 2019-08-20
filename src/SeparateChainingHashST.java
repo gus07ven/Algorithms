@@ -38,4 +38,11 @@ public class SeparateChainingHashST<Key, Value> {
     }
     st[i] = new Node(key, val, st[i]);
   }
+
+  public static void main(String[] args) {
+    SeparateChainingHashST<Integer, String> sp = new SeparateChainingHashST<>();
+    sp.put(1, "hello");
+    sp.put(2, "hi");
+    sp.put(3, "hey");
+  }
 }
