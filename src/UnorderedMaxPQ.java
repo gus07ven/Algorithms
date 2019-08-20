@@ -1,3 +1,5 @@
+// Good implementation for a small priority queue.
+
 public class UnorderedMaxPQ<Key extends Comparable<Key>> {
 
   private Key[] pq;
@@ -13,6 +15,15 @@ public class UnorderedMaxPQ<Key extends Comparable<Key>> {
 
   public void insert(Key x){
     pq[N++] = x;
+  }
+
+  public Key delMax(){
+    int max = 0;
+    for(int i = 1; i < N; i++){
+      if(Helper.less(max, i)) max = i;
+    }
+    Helper.exch(pq, max, N-1);
+    return pq[--N];
   }
 
   public static void main(String[] args) {
