@@ -18,4 +18,13 @@ public class LinearProbingHashST<Key, Value> {
     keys[i] = key;
     vals[i] = val;
   }
+
+  public Value get(Key key){
+    for(int i = hash(key); keys[i] != null; i = (i+1) % M){
+      if(key.equals(keys[i])){
+        return vals[i];
+      }
+    }
+    return null;
+  }
 }
