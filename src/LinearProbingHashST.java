@@ -7,4 +7,15 @@ public class LinearProbingHashST<Key, Value> {
   private int hash(Key key){
     return (key.hashCode() & 0x7fffffff) % M;
   }
+
+  public void put(Key key, Value val){
+    int i;
+    for(i = hash(key); keys[i] != null; i = (i+1) % M){
+      if(keys[i].equals(key)){
+        break;
+      }
+    }
+    keys[i] = key;
+    vals[i] = val;
+  }
 }
