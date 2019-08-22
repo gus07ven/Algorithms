@@ -14,6 +14,19 @@ public class Leet852 {
     return -1;
   }
 
+  public static int peakIndexInMountainArrayIterative(int[] A) {
+    int lo = 0, hi = A.length - 1;
+    while (lo < hi) {
+      int mi = lo + (hi - lo) / 2;
+      if (A[mi] < A[mi + 1])
+        lo = mi + 1;
+      else
+        hi = mi;
+    }
+    return lo;
+  }
+
+
   public static void main(String[] args) {
     int[] mountain = {0, 1, 0};
     int[] mountain2 = {0, 2, 1};
@@ -21,5 +34,8 @@ public class Leet852 {
     System.out.println(peakIndexInMountainArray(mountain));
     System.out.println(peakIndexInMountainArray(mountain2));
     System.out.println(peakIndexInMountainArray(mountain3));
+    System.out.println(peakIndexInMountainArrayIterative(mountain));
+    System.out.println(peakIndexInMountainArrayIterative(mountain2));
+    System.out.println(peakIndexInMountainArrayIterative(mountain3));
   }
 }
