@@ -8,9 +8,10 @@ public class Leet559 {
     public int val;
     public List<Node> children;
 
-    public Node() {}
+    public Node() {
+    }
 
-    public Node(int _val,List<Node> _children) {
+    public Node(int _val, List<Node> _children) {
       val = _val;
       children = _children;
     }
@@ -36,5 +37,16 @@ public class Leet559 {
     return depth;
   }
 
+  public static int maxDepthOptimized(Node root) {
+    if (root == null) return 0;
+    int max = 0;
+    for (int i = 0; i < root.children.size(); i++) {
+      int getMax = maxDepth(root.children.get(i));
+      if (getMax > max) {
+        max = getMax;
+      }
+    }
+    return max + 1;
+  }
 }
 
