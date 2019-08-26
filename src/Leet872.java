@@ -1,10 +1,28 @@
+import java.util.ArrayList;
+
 public class Leet872 {
+
+  public static boolean leafSimilar(TreeNode root1, TreeNode root2) {
+    if (root1 == null & root2 == null) return true;
+    if (root1 == null & root2 != null) return false;
+    if (root1 != null & root2 == null) return false;
+
+    ArrayList<Integer> leaves1 = getLeaves(root1, new ArrayList<>());
+    ArrayList<Integer> leaves2 = getLeaves(root2, new ArrayList<>());
+
+    if (leaves1.size() != leaves2.size()) return false;
+    else return leaves1.equals(leaves2);
+  }
+
+  public static ArrayList<Integer> getLeaves(TreeNode root, ArrayList<Integer> leaves) {
+    return leaves;
+  }
 
   public static void main(String[] args) {
     TreeNode root1 = new TreeNode(3);
     TreeNode root2 = new TreeNode(3);
-    int[] nums1 = {5,1,6,2,9,8,7,4};
-    int[] nums2 = {5,1,6,7,4,2,9,8};
+    int[] nums1 = {5, 1, 6, 2, 9, 8, 7, 4};
+    int[] nums2 = {5, 1, 6, 2, 9, 8, 7, 4};    // 7,4,2,9,8
     for (Integer i : nums1) {
       root1.insert(i);
     }
@@ -16,5 +34,7 @@ public class Leet872 {
     System.out.println();
     System.out.println("Second tree: ");
     root2.printInOrder();
+    System.out.println();
+    System.out.println("Do the trees have similar leaves? " + leafSimilar(root1, root2));
   }
 }
