@@ -7,15 +7,36 @@ public class Leet429 {
     public int val;
     public List<Node> children;
 
-    public Node() {}
+    public Node() {
+    }
 
     public Node(int _val, List<Node> _children) {
       val = _val;
       children = _children;
     }
-
-
   }
+
+    public static List<List<Integer>> levelOrder(Node root) {
+      return getLevelOrderTraversal(root, new ArrayList<>(), 0);
+    }
+
+    public static List<List<Integer>> getLevelOrderTraversal(Node root, List<List<Integer>> levels, int level){
+      if(root == null) return levels;
+
+      if(level >= levels.size()) levels.add(level, new ArrayList<>());
+
+      List<Integer> curLevel = levels.get(level);
+      curLevel.add(root.val);
+      if(root.children != null){
+        for(Node child : root.children){
+          getLevelOrderTraversal(child, levels, level + 1);
+        }
+      } else {
+        return levels;
+      }
+      return levels;
+    }
+
 
   public static void main(String[] args) {
     List<Node> rootChildren = new ArrayList<>();
@@ -39,5 +60,12 @@ public class Leet429 {
     rootChildren.add(child3);
     Node root = new Node(1, rootChildren);
 
+    List<List<Integer>> result = levelOrder(root);
+    for(List<Integer> level : result){
+      System.out.println();
+      for(Integer i : level){
+        System.out.print(i);
+      }
+    }
   }
 }
