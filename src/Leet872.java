@@ -15,6 +15,16 @@ public class Leet872 {
   }
 
   public static ArrayList<Integer> getLeaves(TreeNode root, ArrayList<Integer> leaves) {
+    if (root == null) return null;
+    if (root.left != null) {
+      getLeaves(root.left, leaves);
+    }
+    if (root.left == null & root.right == null) {
+      leaves.add(root.data);
+    }
+    if (root.right != null) {
+      getLeaves(root.right, leaves);
+    }
     return leaves;
   }
 
