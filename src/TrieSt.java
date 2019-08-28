@@ -39,4 +39,19 @@ public class TrieSt<Value> {
     char c = key.charAt(d);
     return get(x.next[c], key, d + 1);
   }
+
+  public static void main(String[] args) {
+    String[] inputs = {"by", "sea", "sells", "shells", "shore", "the"};
+    TrieSt<Integer> t = new TrieSt<>();
+    t.put("by", 1);
+    t.put("sea", 2);
+    t.put("sells", 3);
+    t.put("shells", 4);
+    t.put("shore", 5);
+    t.put("the", 6);
+    System.out.println(t.contains("sea"));
+    System.out.println(t.get("sea"));
+    System.out.println(t.contains("soon"));
+    System.out.println(t.get("soon"));
+  }
 }
