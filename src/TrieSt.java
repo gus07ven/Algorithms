@@ -1,11 +1,19 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TrieSt<Value> {
 
   private static final int R = 256;   // Using extended ASCII
   private Node root = new Node();
+  private int n = 0;
 
   private static class Node {
     private Object val;
     private Node[] next = new Node[R];
+  }
+
+  public int size(){
+    return n;
   }
 
   public void put(String key, Value val){
@@ -40,18 +48,36 @@ public class TrieSt<Value> {
     return get(x.next[c], key, d + 1);
   }
 
+  public Iterable<String> keys(){
+    return keysWithPrefix("");
+  }
+
+  public Iterable<String> keysWithPrefix(String prefix){
+    Queue<String> results = new LinkedList<>();
+    Node x = get(root, prefix, 0);
+    collect(x, new StringBuilder(prefix), results);
+    return results;
+  }
+
+  private void collect(Node x, StringBuilder prefix, Queue<String> results){
+    if(x == null) return;
+    if(x.val != null) results.offer(prefix.toString());
+    for(char c = 0; c < R; c++){
+      prefix.append(c);
+      collect(x.next[c], prefix, results);
+      prefix.deleteCharAt(prefix.length() - 1);
+    }
+  }
+
   public static void main(String[] args) {
     String[] inputs = {"by", "sea", "sells", "shells", "shore", "the"};
     TrieSt<Integer> t = new TrieSt<>();
     t.put("by", 1);
     t.put("sea", 2);
-    t.put("sells", 3);
-    t.put("shells", 4);
-    t.put("shore", 5);
-    t.put("the", 6);
     System.out.println(t.contains("sea"));
     System.out.println(t.get("sea"));
     System.out.println(t.contains("soon"));
     System.out.println(t.get("soon"));
+    System.out.println(t.keys());
   }
 }
