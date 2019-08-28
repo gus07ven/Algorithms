@@ -23,6 +23,7 @@ public class TrieSt<Value> {
   private Node put(Node x, String key, Value val, int d){
     if(x == null) x = new Node();
     if(d == key.length()) {
+      if(x.val == null) n++;
       x.val = val;
       return x;
     }
@@ -98,6 +99,7 @@ public class TrieSt<Value> {
     TrieSt<Integer> t = new TrieSt<>();
     t.put("by", 1);
     t.put("sea", 2);
+    System.out.println(t.size());
     System.out.println(t.contains("sea"));
     System.out.println(t.get("sea"));
     System.out.println(t.contains("soon"));
@@ -105,5 +107,6 @@ public class TrieSt<Value> {
     System.out.println(t.keys());
     t.delete("by");
     System.out.println(t.keys());
+    System.out.println(t.size());
   }
 }
