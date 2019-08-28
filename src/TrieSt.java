@@ -95,7 +95,6 @@ public class TrieSt<Value> {
   }
 
   public static void main(String[] args) {
-    String[] inputs = {"by", "sea", "sells", "shells", "shore", "the"};
     TrieSt<Integer> t = new TrieSt<>();
     t.put("by", 1);
     t.put("sea", 2);
