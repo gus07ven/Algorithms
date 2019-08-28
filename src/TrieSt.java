@@ -69,6 +69,30 @@ public class TrieSt<Value> {
     }
   }
 
+  public void delete(String key){
+    if(key == null) throw new IllegalArgumentException("Argument to delete is null");
+    root = delete(root, key, 0);
+  }
+
+  private Node delete(Node x, String key, int d){
+    if(x == null) return null;
+    if(d == key.length()){
+      if(x.val != null) n--;
+      x.val = null;
+    }
+    else {
+      char c = key.charAt(d);
+      x.next[c] = delete(x.next[c], key, d + 1);
+    }
+
+    // remove subtrie rooted at x if it is completely empty
+    if(x.val != null) return x;
+    for(int c = 0; c < R; c++){
+      if(x.next[c] != null) return x;
+    }
+    return null;
+  }
+
   public static void main(String[] args) {
     String[] inputs = {"by", "sea", "sells", "shells", "shore", "the"};
     TrieSt<Integer> t = new TrieSt<>();
@@ -78,6 +102,8 @@ public class TrieSt<Value> {
     System.out.println(t.get("sea"));
     System.out.println(t.contains("soon"));
     System.out.println(t.get("soon"));
+    System.out.println(t.keys());
+    t.delete("by");
     System.out.println(t.keys());
   }
 }
