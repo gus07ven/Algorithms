@@ -41,6 +41,21 @@ public class RodCut {
     return maxRevenue;
   }
 
+  public int bottomUpMemo(HashMap<Integer, Integer> priceTable, int rodLength){
+    HashMap<Integer,Integer> revenueTable = new HashMap<>();
+    for(int i = 0; i <= rodLength; i++){
+      revenueTable.put(i + 1, 0);
+    }
+    for(int j = 1; j < rodLength + 1; j++){
+      int maxRevenue = 0;
+      for(int i = 1; i < j; i++){
+        maxRevenue = Math.max(maxRevenue, priceTable.get(i) + revenueTable.get(j - i));
+      }
+      revenueTable.put(j, maxRevenue);
+    }
+    return revenueTable.get(rodLength);
+   }
+
   public static void main(String[] args) {
     HashMap<Integer,Integer> priceTable = new HashMap<>();
     priceTable.put(1, 1);
@@ -57,5 +72,6 @@ public class RodCut {
     RodCut rc = new RodCut(priceTable, rodLength);
     System.out.println(rc.topDownDynProgImp(rc.priceTable, rc.rodLength));
     System.out.println(rc.topDownMemo(rc.priceTable, rc.rodLength));
+    System.out.println(rc.bottomUpMemo(rc.priceTable, rc.rodLength)); 
   }
 }
