@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Map;
 
 public class RodCut {
 
@@ -98,11 +97,12 @@ public class RodCut {
     priceTable.put(8, 20);
     priceTable.put(9, 24);
     priceTable.put(10, 30);
-    int rodLength = 7;
+    int rodLength = 10;
     RodCut rc = new RodCut(priceTable, rodLength);
     System.out.println(rc.topDownDynProgImp(rc.priceTable, rc.rodLength));
     System.out.println(rc.topDownMemo(rc.priceTable, rc.rodLength));
     System.out.println(rc.bottomUpMemo(rc.priceTable, rc.rodLength));
+    System.out.println("The optimal cuts for a rod of length " + rodLength + ":");
     rc.printCutRodSolution(rc.priceTable, rc.rodLength);
   }
 }
