@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 
 public class RodCut {
 
@@ -56,6 +57,35 @@ public class RodCut {
     return revenueTable.get(rodLength);
    }
 
+  public HashMap<Integer,Integer> bottomUpMemoExtended(HashMap<Integer, Integer> priceTable, int rodLength){
+    HashMap<Integer,Integer> revenueTable = new HashMap<>();
+    HashMap<Integer,Integer> optFirstCut = new HashMap<>();
+    for(int i = 0; i <= rodLength; i++){
+      revenueTable.put(i, 0);
+      optFirstCut.put(i, 0);
+    }
+    for(int j = 1; j <= rodLength; j++){
+      int maxRevenue = 0;
+      for(int i = 1; i <= j; i++){
+        if(maxRevenue < priceTable.get(i) + revenueTable.get(j - i)){
+          maxRevenue = priceTable.get(i) + revenueTable.get(j - i);
+          optFirstCut.put(j, i);
+        }
+      }
+      revenueTable.put(j, maxRevenue);
+    }
+    return optFirstCut;
+   }
+
+   public void printCutRodSolution(HashMap<Integer, Integer> priceTable, int rodLength){
+    HashMap<Integer,Integer> optFirstCut = bottomUpMemoExtended(priceTable, rodLength);
+    while(rodLength > 0){
+      int cut = optFirstCut.get(rodLength);
+      System.out.println(cut);
+      rodLength = rodLength - cut;
+    }
+   }
+
   public static void main(String[] args) {
     HashMap<Integer,Integer> priceTable = new HashMap<>();
     priceTable.put(1, 1);
@@ -72,6 +102,7 @@ public class RodCut {
     RodCut rc = new RodCut(priceTable, rodLength);
     System.out.println(rc.topDownDynProgImp(rc.priceTable, rc.rodLength));
     System.out.println(rc.topDownMemo(rc.priceTable, rc.rodLength));
-    System.out.println(rc.bottomUpMemo(rc.priceTable, rc.rodLength)); 
+    System.out.println(rc.bottomUpMemo(rc.priceTable, rc.rodLength));
+    rc.printCutRodSolution(rc.priceTable, rc.rodLength);
   }
 }
