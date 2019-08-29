@@ -15,8 +15,29 @@ public class RodCut {
 
     int maxRevenue = 0;
     for(int i = 1; i < rodLength; i++){
-      maxRevenue = Math.max(maxRevenue, priceTable.get(i) + topDownDynProgImp(priceTable, rodLength - i));
+      int tp = priceTable.get(i) + topDownDynProgImp(priceTable, rodLength - i); // price + remainder of rod
+      maxRevenue = Math.max(maxRevenue, tp);
     }
+    return maxRevenue;
+  }
+
+  public int topDownMemo(HashMap<Integer,Integer> priceTable, int rodLength){
+    HashMap<Integer,Integer> revenueTable = new HashMap<>();
+    for(int i = 0; i < rodLength; i++){
+      revenueTable.put(i + 1, Integer.MIN_VALUE);
+    }
+    return topDownMemoAux(priceTable, rodLength, revenueTable);
+  }
+
+  private int topDownMemoAux(HashMap<Integer, Integer> priceTable, int rodLength,
+                             HashMap<Integer, Integer> revenueTable){
+    if(revenueTable.get(rodLength) >= 0) return revenueTable.get(rodLength);
+    int maxRevenue = 0;
+      for(int i = 1; i < rodLength; i++){
+        maxRevenue = Math.max(maxRevenue, priceTable.get(i) +
+                topDownMemoAux(priceTable, rodLength - i, revenueTable));
+      }
+    revenueTable.put(rodLength, maxRevenue);
     return maxRevenue;
   }
 
@@ -35,5 +56,6 @@ public class RodCut {
     int rodLength = 7;
     RodCut rc = new RodCut(priceTable, rodLength);
     System.out.println(rc.topDownDynProgImp(rc.priceTable, rc.rodLength));
+    System.out.println(rc.topDownMemo(rc.priceTable, rc.rodLength));
   }
 }
