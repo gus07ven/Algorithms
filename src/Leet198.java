@@ -1,24 +1,19 @@
-import java.util.*;
-import java.util.HashMap;
 
 public class Leet198 {
 
-  // TODO: Finish this one.
   private static int rob(int[] nums) {
-    if(nums.length == 0) return 0;
+    return rob(nums, nums.length - 1);
+  }
 
-    HashMap<Integer,Integer> map = new HashMap<>();
-    for(int i = 0; i < nums.length; i++){
-      map.put(i, nums[i]);
+  private static int rob(int[] nums, int i) {
+    if (i < 0) {
+      return 0;
     }
-
-    Set test = map.entrySet();
-
-    return 1;
+    return Math.max(rob(nums, i - 2) + nums[i], rob(nums, i - 1));
   }
 
   public static void main(String[] args) {
-    int[] houses = {2,1,1,2};
+    int[] houses = {2,7,9,3,1};
     System.out.println(rob(houses));
   }
 }
