@@ -7,7 +7,14 @@ public class Leet70 {
   }
 
   private static int climbStairsAux(int[] stepsTable, int n){
-    return n;
+    if(n == 0 || n == 1 || n == 2) return n;
+    if(stepsTable[n] > 0) return stepsTable[n];
+
+    if(stepsTable[n] == 0){
+      stepsTable[n]= climbStairsAux(stepsTable, n - 2) + climbStairsAux(stepsTable, n - 1);
+    }
+
+    return stepsTable[n];
   }
 
   public static void main(String[] args) {
