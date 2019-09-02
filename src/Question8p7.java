@@ -55,7 +55,8 @@ public class Question8p7 {
   }
 
   public static void main(String[] args) {
-    String str = "ab";
+    String str = "abbc";
+    String sub = str.substring(0,1) + str.substring(2);
     ArrayList<String> result = getPerms2(str);
     for(String s : result){
       System.out.println(s);
