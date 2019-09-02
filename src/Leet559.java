@@ -49,4 +49,3 @@ public class Leet559 {
     return max + 1;
   }
 }
-
