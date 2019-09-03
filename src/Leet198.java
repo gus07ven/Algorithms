@@ -45,10 +45,23 @@ public class Leet198 {
     return memo[nums.length];
   }
 
+  private static int robIterVar(int[] nums){
+    if(nums.length == 0) return 0;
+    int prev1 = 0;
+    int prev2 = 0;
+    for(int num : nums){
+      int tmp = prev1;
+      prev1 = Math.max(prev2 + num, prev1);
+      prev2 = tmp;
+    }
+    return prev1;
+  }
+
   public static void main(String[] args) {
     int[] houses = {2,7,9,3,1};
     System.out.println("Top down DP solution: " + rob(houses));
     System.out.println("Top down DP memoized solution: " + robMemo(houses));
     System.out.println("Bottom up DP iterative memoized solution: " + robIter(houses));
+    System.out.println("Bottom up DP iterative variables solution: " + robIterVar(houses));
   }
 }
