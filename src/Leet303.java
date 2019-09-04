@@ -17,11 +17,14 @@ public class Leet303 {
   }
 
   public int sumRange(int i, int j){
-    return 0;
+    return map.get(new Pair<>(i,j));
   }
 
   public static void main(String[] args) {
     int[] nums = {-2, 0, 3, -5, 2, -1};
     Leet303 le = new Leet303(nums);
+    System.out.println(le.sumRange(0, 2));
+    System.out.println(le.sumRange(2, 5));
+    System.out.println(le.sumRange(0, 5));
   }
 }
