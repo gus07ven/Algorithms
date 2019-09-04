@@ -58,7 +58,7 @@ public class Leet198 {
   }
 
   public static void main(String[] args) {
-    int[] houses = {2,7,9,3,1};
+    int[] houses = {1,2,3,1};
     System.out.println("Top down DP solution: " + rob(houses));
     System.out.println("Top down DP memoized solution: " + robMemo(houses));
     System.out.println("Bottom up DP iterative memoized solution: " + robIter(houses));
