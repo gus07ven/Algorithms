@@ -1,6 +1,12 @@
 public class ColoredMap {
 
   private int[][] map;
+  private static final int NONE = 0;
+  private static final int RED = 1;
+  private static final int YELLOW = 2;
+  private static final int GREEN = 3;
+  private static final int BLUE = 4;
+  private int[] mapColors = { NONE, NONE, NONE, NONE, NONE, NONE, NONE};
 
   public void createMap(){
     map = new int[7][];
@@ -11,6 +17,14 @@ public class ColoredMap {
     map[4] = new int[] {0, 1, 6, 3, 2};
     map[5] = new int[] {2, 6, 1, 0};
     map[6] = new int[] {2, 3, 4, 1, 5};
+  }
+
+  public boolean okToColor(int country, int color){
+    for (int i = 0; i < map[country].length; i++) {
+      int ithAdjCountry = map[country][i];
+      if(mapColors[ithAdjCountry] == color) return false;
+    }
+    return true;
   }
 
 }
