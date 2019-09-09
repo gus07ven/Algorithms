@@ -27,4 +27,20 @@ public class ColoredMap {
     return true;
   }
 
+  public boolean explore(int country, int color){
+    if(country >= map.length) return true;
+    if(okToColor(country, color)){
+      mapColors[country] = color;
+      for(int i = RED; i <= BLUE; i++){
+        if(explore(country + 1, i)) return true;
+      }
+    }
+    return false;
+  }
+
+  public static void main(String[] args) {
+    ColoredMap map = new ColoredMap();
+    map.createMap();
+  }
+
 }
