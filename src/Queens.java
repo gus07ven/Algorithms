@@ -59,9 +59,19 @@ public class Queens {
     return true;
   }
 
+  private void printPlacement(){
+    for(int i = 0; i < this.chessboard.length; i++){
+      for(int j = 0; j < this.chessboard.length; j++){
+        if(this.chessboard[i][j]) System.out.println("Queen located in row: " + i + " and column: " + j);
+      }
+    }
+  }
 
   public static void main(String[] args) {
    Queens game = new Queens();
-    System.out.println(game.solve(game.chessboard, 0));
+   boolean result = game.solve(game.chessboard, 0);
+   if(result) {
+     game.printPlacement();
+   }
   }
 }
