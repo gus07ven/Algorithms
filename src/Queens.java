@@ -17,15 +17,24 @@ public class Queens {
             UpperDiagIsClear(board, row, col));
   }
 
-  private boolean LowerDiagIsClear(boolean[][] board, int row, int col){
+  private boolean LowerDiagIsClear(boolean[][] board, int queenRow, int queenCol){
+    for(int row = queenRow, col = queenCol; row >= 0 && col >= 0; row--, col--){
+      if(board[row][col]) return false;
+    }
     return true;
   }
 
   private boolean RowIsClear(boolean[][] board, int row, int col){
+    for(int i = 0; i < col; i++){
+      if(board[row][i]) return false;
+    }
     return true;
   }
 
-  private boolean UpperDiagIsClear(boolean[][] board, int row, int col){
+  private boolean UpperDiagIsClear(boolean[][] board, int queenRow, int queenCol){
+    for(int row = queenRow, col = queenCol; col >= 0 && row < board[row].length; row++, col--){
+      if(board[row][col]) return false;
+    }
     return true;
   }
 
