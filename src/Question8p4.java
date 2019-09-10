@@ -1,6 +1,8 @@
+import com.sun.tools.javac.util.List;
 import sun.rmi.server.InactiveGroupException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Question8p4 {
 
@@ -46,13 +48,32 @@ public class Question8p4 {
     return subset;
   }
 
+  public static ArrayList<ArrayList<Integer>> subsets(int[] nums) {
+    ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+    Arrays.sort(nums);
+    backtrack(list, new ArrayList<>(), nums, 0);
+    return list;
+  }
+
+  private static void backtrack(ArrayList<ArrayList<Integer>> list , ArrayList<Integer> tempList, int [] nums, int start) {
+    list.add(new ArrayList<>(tempList));
+    for (int i = start; i < nums.length; i++) {
+      tempList.add(nums[i]);
+      backtrack(list, tempList, nums, i + 1);
+      tempList.remove(tempList.size() - 1);
+    }
+  }
 
   public static void main(String[] args) {
     ArrayList<Integer> set = new ArrayList<>();
     set.add(1);
     set.add(2);
-    System.out.println(getSubsets(set, 0));
+    set.add(3);
 
+    System.out.println(getSubsets(set, 0));
     System.out.println(getSubsets2(set));
+
+    int[] test = {1,2,3};
+    System.out.println(subsets(test));
   }
 }
